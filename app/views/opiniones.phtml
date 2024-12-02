@@ -1,0 +1,33 @@
+
+<?php       
+require_once 'app/models/opinion.model.php';
+require_once 'app/controllers/opinion.controller.php';
+
+
+
+class OpinionView {
+
+    public function showOpiniones($opiniones) {
+        require_once 'app/views/form.alta.phtml';
+        echo '<table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#Dni</th>
+                    <th scope="col">#Fecha</th>
+                    <th scope="col">Reputacion</th>
+                    <th scope="col">Profesor</th>
+                </tr>
+                </thead>
+            <tbody>';
+        foreach($opiniones as $opinion){
+            echo '<tr>
+                    <td>' . $opinion -> dni . '</td>
+                    <td>' . $opinion -> fecha . '</td>
+                    <td>' . $opinion -> reputacion . '</td>
+                    <td>' . $opinion -> id_profesor . '</td>
+                </tr>';
+            }
+            echo '</tbody>
+            </table>';
+        }
+    }
