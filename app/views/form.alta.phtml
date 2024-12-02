@@ -1,0 +1,57 @@
+<div class="container-sm mt-5">
+    <h2 class="fs-3 fw-bold mt-5 mb-3">Agregar Opinion</h2>
+    <form class="mb-5" action="addOpinion" method="POST">
+        <div class="mb-3">
+            <label for="dni" class="form-label">Dni</label>
+            <input type="text" class="form-control" name="dni" id="dni" required>
+        </div>
+        <div class="mb-3">
+            <label for="fecha" class="form-label">Fecha</label>
+            <input class="form-control" name="fecha" id="fecha" required></input>
+        </div>
+            <label class="form-label">Imagen</label>;
+            <select class="form-select mb-3" aria-label="Default select example" name="reputacion" required>;
+            <option value="" selected disabled>Seleccione imagen</option>;
+            <option value="Positiva">Positiva</option>;
+            <option value="Positiva">Negativa</option>;
+        </select>';
+        <?php
+            echo '<label class="form-label">Profesor</label>';
+            echo '<select class="form-select mb-3" aria-label="Default select example" name="id" required>';
+            echo '<option value="" selected disabled>Seleccione un profesor</option>';
+            foreach ($profesores as $profesor) {
+                echo '<option value="' . $profesor->id . '">' . $profesor->nombre. '</option>';    }
+            echo '</select>';
+        ?>
+        <div class="mb-3">
+            <label for="profesor" class="form-label">Profesor</label>
+            <input class="form-control" name="profesor" id="profesor" required></input>
+        </div>
+        <button type="submit" class="btn btn-primary">Insertar</button>
+    </form>
+</div>
+
+<div class="mx-5">
+    <h2 class="fs-3 fw-bold mt-5">Listado de opiniones</h2>
+    <table class="table mt-5">
+        <thead>
+            <tr>
+                <th scope="col">Dni</th><th scope="col">Fecha</th><th scope="col">Reputacion</th><th scope="col">Profesor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+                foreach($opiniones as $opinion){
+                    echo '
+                        <tr>
+                            <td>' . $opinion->dni . '</td>
+                            <td>' . $opinion->fecha . '</td>
+                            <td>' . $opinion->reputacion . '</td>
+                            <td '. $opinion->id_profesor . ' </td>
+                        </tr>
+                    ';
+                }
+            ?>
+        </tbody>
+    </table>    
+</div>
