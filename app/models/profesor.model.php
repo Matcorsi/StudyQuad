@@ -9,5 +9,12 @@
                 MYSQL_USER, MYSQL_PASS);
         }
 
-        
+        public function getProfesores(){
+            $query = $this->db->prepare('SELECT * FROM profesor');
+            $query->execute();
+
+            return $query->fetchAll(PDO::FETCH_OBJ);
+        }
+
+
     }

@@ -4,7 +4,6 @@
 
     define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
     
- 
     
     if (!empty($_GET['action'])) {
         $action = $_GET['action'];
@@ -17,11 +16,27 @@
     switch ($params[0]) {
         case 'opinion':
             $controller = new OpinionController();
-            $controller->listarOpiniones();
+            $controller->showOpiniones();
             break;
         case 'addOpinion':
             $controller = new OpinionController();
-            $controller->AddOpinion();
+            $controller->insertOpinion();
+            break;
+        case 'filtrar':
+            if (isset($params[1])) {
+                $controller = new OpinionController();
+                $controller->getOpinionXfecha($params[1]);
+            } else {
+                $controller->showError();
+            }
+            break;
+        case 'borrar':
+            if (isset($params[1])) {
+                $controller = new OpinionController();
+                $controller->eraseOpinion($params[1]);
+            } else {
+                $controller->showError();
+            }
             break;
     }
 ?>
